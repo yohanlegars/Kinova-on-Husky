@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:include filename="$(find husky_kinova_description)/urdf/husky_gen3_lite_description.urdf.xacro" />
+<xacro:include filename="$(find lockmount_description)/urdf/lockmount.urdf.xacro" />
+<xacro:include filename="$(find velodyne_description)/urdf/HDL-32E.urdf.xacro" />
+
+<!-- Arch -->
+
+  <link name="arch_link">
+    <visual>
+     <origin xyz="0.0 0.0 0.003" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/arch.STL"/>
+      </geometry>
+	    <material name="dark_grey">
+	    <color rgba="0.15 0.15 0.15 1"/>
+        </material>
+    </visual>
+    <collision>
+     <origin xyz="0.0 0.0 0.003" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/arch.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="arch_joint" type="fixed">
+    <parent link="top_plate_link" />
+    <child link="arch_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!-- Rails -->
+
+  <link name="rails_link">
+    <visual>
+     <origin xyz="0.0 0.0 0.003" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/rails.STL"/>
+      </geometry>
+	    <material name="dark_grey">
+	    <color rgba="0.15 0.15 0.15 1"/>
+        </material>
+    </visual>
+    <collision>
+     <origin xyz="0.0 0.0 0.003" rpy="1.5708 0 1.5708"/>
+	  <geometry>
+        <mesh filename="package://duot06_description/meshes/rails.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="rails_joint" type="fixed">
+    <parent link="top_plate_link" />
+    <child link="rails_link" />
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+<!--XSens IMU-->
+
+  <link name="xsens_imu"> </link>
+
+  <joint name="xsens_imu_joint" type="fixed">
+    <parent link="base_link" />
+    <child link="xsens_imu" />
+    <origin xyz="0.09 -0.14 0.1" rpy="${pi} ${pi} 0"/>
+  </joint>
+
+<!-- Blackfly Locking Extrusion Mount -->
+
+  <xacro:lockmount prefix="blackfly_lock" parent_link="arch_link" angle="0">
+    <origin xyz="-0.306 0 0.327" rpy="0 0 0" />
+  </xacro:lockmount>
+
+
+<!--Blackfly Camera-->
+
+  <link name="camera">
+    <visual>
+      <origin xyz="0.0 0.0 -0.01" rpy="${pi/2} 0 ${pi/2}"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/blackfly_lens_mount.STL"/>
+      </geometry>
+        <material name="dark_grey">
+	  <color rgba="0.15 0.15 0.15 1"/>
+        </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 -0.01" rpy="${pi/2} 0 ${pi/2}"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/blackfly_lens_mount.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="camera_joint" type="fixed">
+    <parent link="blackfly_lock_mount" />
+    <child link="camera" />
+    <origin xyz="0 0 0.025" rpy='0 0 0'/>
+  </joint>
+
+<!-- ZED2 Locking Extrusion Mount -->
+
+  <xacro:lockmount prefix="zed2_lock" parent_link="arch_link" angle="${-pi/2}">
+    <origin xyz="-0.295 -0.18 0.316" rpy="0 ${pi/2} 0" />
+  </xacro:lockmount>
+
+<!--Zed2 Camera-->
+
+  <link name="zed_link">
+    <visual>
+      <origin xyz="0.0 0.0 0.01" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/zed2.stl"/>
+      </geometry>
+        <material name="dark_grey">
+	  <color rgba="0.15 0.15 0.15 1"/>
+        </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.0 0.0 0.01" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/zed2.stl"/>
+      </geometry>
+    </collision> 
+  </link> 
+  
+  <joint name="zed_joint" type="fixed">
+    <parent link="zed2_lock_mount" />
+    <child link="zed_link" />
+    <origin xyz="0 0 0" rpy='0 0 0'/>
+  </joint>
+
+  
+<!--Swiftnav GPS-->
+
+  <link name="navsat_link"> 
+    <visual>
+      <origin xyz="0.4175 -0.25 -0.38" rpy="1.5708 0 1.5708"/>
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/antenna.STL"/>
+      </geometry>
+        <material name="dark_grey">
+	  <color rgba="0.15 0.15 0.15 1"/>
+        </material>
+    </visual>
+
+    <collision>
+      <origin xyz="0.4175 -0.25 -0.38" rpy="1.5708 0 1.5708" />
+      <geometry>
+        <mesh filename="package://duot06_description/meshes/antenna.STL"/>
+      </geometry>
+    </collision> 
+  </link>
+
+  <joint name="navsat_joint" type="fixed">
+    <parent link="top_plate_rear_link" />
+    <child link="navsat_link" />
+    <origin xyz="-0.05 0.25 0.38" />
+  </joint>
+
+<!--Velodyne Lidar-->
+
+  <xacro:HDL-32E parent="top_plate_rear_link" name="velodyne">
+    <origin xyz="0.05 0 0.44635" rpy="0 0 ${-pi/2}" />
+  </xacro:HDL-32E>
+
+  <!-->
+
+  <link name="velodyne"> </link>
+
+  <joint name="velodyne_joint" type="fixed">
+    <parent link="top_plate_rear_link" />
+    <child link="velodyne" />
+    <origin xyz="0.05 0 0.52" rpy='0 0 ${-pi/2}' />
+  </joint>
+
+  -->
+
+
+</robot>

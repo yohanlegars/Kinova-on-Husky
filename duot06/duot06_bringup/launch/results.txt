@@ -1,0 +1,9 @@
+{BaseStationIP_PingTest: SUCCESS, CustomerIP_PingTest: SUCCESS, FLIRCamera1_cameraimage_colorcompressed_AdvertiseTest: SUCCESS,
+  FLIRCamera1_cameraimage_colorcompressed_RateTest: SUCCESS, GEN31IP_PingTest: SUCCESS,
+  MicrohardRadioIP_PingTest: SUCCESS, PCHostname_PingTest: SUCCESS, ROSWTFTest: SUCCESS,
+  SwiftNavRTKBaseStationIP_PingTest: SUCCESS, SwiftNavRTKRoverIP_PingTest: SUCCESS,
+  SwiftNavRTK_piksinavsatfix_best_fix_AdvertiseTest: SUCCESS, SwiftNavRTK_piksinavsatfix_best_fix_RateTest: SUCCESS,
+  Velodyne1IP_PingTest: SUCCESS, Velodyne1_velodyne_points_AdvertiseTest: SUCCESS,
+  Velodyne1_velodyne_points_RateTest: SUCCESS, Xsens_imudata_AdvertiseTest: SUCCESS,
+  Xsens_imudata_RateTest: SUCCESS, ZED_zed_nodepoint_cloudcloud_registered_AdvertiseTest: SUCCESS,
+  ZED_zed_nodepoint_cloudcloud_registered_RateTest: FAIL}

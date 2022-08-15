@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>duot06_bringup</name>
+  <version>0.0.0</version>
+  <description>Contains environment variables and bringup files for DUOT06</description>
+  <maintainer email="code@clearpathrobotics.com">Clearpath Team</maintainer>
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>husky_robot</exec_depend>
+  <exec_depend>duot06_description</exec_depend>
+  <exec_depend>velodyne_pointcloud</exec_depend>
+  <exec_depend>timed_roslaunch</exec_depend>
+
+
+  <!-- The export tag contains other, unspecified, tags -->
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+
+  </export>
+</package>

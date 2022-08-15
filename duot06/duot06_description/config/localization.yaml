@@ -1,0 +1,2 @@
+ekf_localization:
+  imu0: imu/data

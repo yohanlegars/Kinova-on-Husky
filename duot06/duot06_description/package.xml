@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package>
+	<name>duot06_description</name>
+	<version>0.0.0</version>
+	<description>Repo for the DUOT06 Husky. Robot includes Kinova Gen3 Lite manipulator arm, Swiftnav Duro with RTK, Velodyne HDL 32e lidar, Autek wireless e-stop, Xsens IMU and Jetson AGX Xavier.</description>
+	<maintainer email="code@clearpathrobotics.com">Clearpath Team</maintainer>
+	<license>BSD</license>
+	<buildtool_depend>catkin</buildtool_depend>
+	<run_depend>husky_bringup</run_depend>
+	<run_depend>husky_description</run_depend>
+</package>
+

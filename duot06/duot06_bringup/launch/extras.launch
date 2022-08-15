@@ -1,0 +1,7 @@
+<launch>
+  <include file="$(find timed_roslaunch)/timed_roslaunch.launch">
+    <arg name="time" value="20" />
+    <arg name="pkg" value="duot06_bringup" />
+    <arg name="file" value="camera.launch" />
+  </include>
+</launch>

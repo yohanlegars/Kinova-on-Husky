@@ -1,0 +1,13 @@
+#!/bin/bash
+# Configures necessary environment variables for the DUOT06 Husky
+# The contents of this file can be included in /etc/ros/setup.bash
+# either by copying & pasting, or adding
+#   source $(catkin_find duot06_bringup scripts/environment --first-only)
+# to that file
+
+
+# URDF extras
+export HUSKY_URDF_EXTRAS=$(catkin_find duot06_description urdf/duot06_description.urdf.xacro --first-only)
+
+# Configure the Kinova Gen3 Lite Arm Position
+export HUSKY_KINOVA_XYZ="-0.145 0.0 0.0264"
