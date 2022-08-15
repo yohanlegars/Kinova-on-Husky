@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: husky_description
+    relative_path: urdf/husky.urdf.xacro
+    xacro_args: urdf_extras:='$(find cor_mdp_husky_description)/urdf/duot06_description.urdf.xacro'
+  SRDF:
+    relative_path: config/husky.srdf
+  CONFIG:
+    author_name: Chadi Salmi
+    author_email: c.salmi@tudelft.nl
+    generated_timestamp: 1653316040

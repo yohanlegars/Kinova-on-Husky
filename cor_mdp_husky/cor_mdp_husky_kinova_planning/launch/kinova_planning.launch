@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="cor_mdp_husky_kinova_planning" type="kinova_planning.py" name="kinova_planning_node" output="screen"
+    launch-prefix="gnome-terminal --command">
+    </node>
+</launch>

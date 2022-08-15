@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="b" default="1"/>
+  <xacro:arg name="h" default="1"/>
+  <xacro:arg name="l" default="1"/>
+  <xacro:arg name="color" default="Gray"/>
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/box.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_box box_name="box_0" b="$(arg b)" l="$(arg l)" h="$(arg h)" xyz="0 0 0" color="$(arg color)"/>
+
+  <gazebo> <static>true</static></gazebo>
+</robot>
+

@@ -1,0 +1,400 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <model name='AH_shelf'>
+    <static>1</static>
+    <link name='link'>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <pose frame=''>-0 0 0 0 0 0</pose>
+
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://AH_shelf/AH_shelf.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://AH_shelf/AH_shelf.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+
+    <include>
+      <static>1</static>
+      <uri>model://legacy_models/apriltag_1</uri>
+      <pose>0.225 0.57 1.085 1.57 0 0</pose>
+      <name>tag_1</name>
+    </include>
+
+    <include>
+      <static>1</static>
+      <uri>model://legacy_models/apriltag_1</uri>
+      <pose>0.445 0.57 0.385 1.57 0 0</pose>
+      <name>tag_2</name>
+    </include>
+
+    <include>
+      <static>1</static>
+      <uri>model://legacy_models/apriltag_1</uri>
+      <pose>0.555 0.57 1.085 1.57 0 0</pose>
+      <name>tag_3</name>
+    </include>
+
+    <include>
+      <static>1</static>
+      <uri>model://legacy_models/apriltag_1</uri>
+      <pose>0.71 0.57 1.435 1.57 0 0</pose>
+      <name>tag_4</name>
+    </include>
+
+    <model name="board1">
+      <pose>0 0.5 0.25 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.111111111111 0 0 0 0 1.57</pose>
+        <name>ah_puur_1</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.222222222222 0 0 0 0 1.57</pose>
+        <name>ah_puur_2</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.333333333333 0 0 0 0 1.57</pose>
+        <name>ah_puur_3</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.444444444444 0 0 0 0 1.57</pose>
+        <name>ah_puur_4</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.555555555556 0 0 0 0 1.57</pose>
+        <name>ah_puur_5</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.666666666667 0 0 0 0 1.57</pose>
+        <name>ah_puur_6</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.777777777778 0 0 0 0 1.57</pose>
+        <name>ah_puur_7</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.888888888889 0 0 0 0 1.57</pose>
+        <name>ah_puur_8</name>
+      </include>
+
+    </model>
+
+    <model name="board2">
+      <pose>0 0.5 0.65 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.111111111111 0 0 0 0 1.57</pose>
+        <name>ah_melk_7</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.222222222222 0 0 0 0 1.57</pose>
+        <name>ah_melk_8</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.333333333333 0 0 0 0 1.57</pose>
+        <name>ah_melk_9</name>
+      </include>
+
+      <!-- <include> -->
+      <!--   <uri>model://AH_hagelslag_melk</uri> -->
+      <!--   <pose>0.444444444444 0 0 0 0 1.57</pose> -->
+      <!--   <name>ah_melk_10</name> -->
+      <!-- </include> -->
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.555555555556 0 0 0 0 1.57</pose>
+        <name>ah_melk_11</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.666666666667 0 0 0 0 1.57</pose>
+        <name>ah_melk_12</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.777777777778 0 0 0 0 1.57</pose>
+        <name>ah_melk_13</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.888888888889 0 0 0 0 1.57</pose>
+        <name>ah_melk_14</name>
+      </include>
+
+    </model>
+
+    <model name="board3">
+      <pose>0 0.5 0.9 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.142857142857 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_1</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.285714285714 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_2</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.428571428571 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_3</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.571428571429 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_4</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.714285714286 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_5</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_bosvruchten</uri>
+        <pose>0.857142857143 0 0 0 0 1.57</pose>
+        <name>ah_thee_bosvruchten_6</name>
+      </include>
+
+    </model>
+
+    <model name="board4">
+      <pose>0 0.5 1.2 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.111111111111 0 0 0 0 1.57</pose>
+        <name>ah_puur_9</name>
+      </include>
+
+      <!-- <include> -->
+      <!--   <uri>model://AH_hagelslag_puur</uri> -->
+      <!--   <pose>0.222222222222 0 0 0 0 1.57</pose> -->
+      <!--   <name>ah_puur_10</name> -->
+      <!-- </include> -->
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.333333333333 0 0 0 0 1.57</pose>
+        <name>ah_puur_11</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.444444444444 0 0 0 0 1.57</pose>
+        <name>ah_puur_12</name>
+      </include>
+
+      <!-- <include> -->
+      <!--   <uri>model://AH_hagelslag_puur</uri> -->
+      <!--   <pose>0.555555555556 0 0 0 0 1.57</pose> -->
+      <!--   <name>ah_puur_13</name> -->
+      <!-- </include> -->
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.666666666667 0 0 0 0 1.57</pose>
+        <name>ah_puur_14</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.777777777778 0 0 0 0 1.57</pose>
+        <name>ah_puur_15</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_puur</uri>
+        <pose>0.888888888889 0 0 0 0 1.57</pose>
+        <name>ah_puur_16</name>
+      </include>
+
+    </model>
+
+    <model name="board5">
+      <pose>0 0.5 1.6 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.142857142857 0 0 0 0 1.57</pose>
+        <name>ah_melk_1</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.285714285714 0 0 0 0 1.57</pose>
+        <name>ah_melk_2</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.428571428571 0 0 0 0 1.57</pose>
+        <name>ah_melk_3</name>
+      </include>
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.571428571429 0 0 0 0 1.57</pose>
+        <name>ah_melk_4</name>
+      </include>
+
+      <!-- <include> -->
+      <!--   <uri>model://AH_hagelslag_melk</uri> -->
+      <!--   <pose>0.714285714286 0 0 0 0 1.57</pose> -->
+      <!--   <name>ah_melk_5</name> -->
+      <!-- </include> -->
+
+      <include>
+        <uri>model://AH_hagelslag_melk</uri>
+        <pose>0.857142857143 0 0 0 0 1.57</pose>
+        <name>ah_melk_6</name>
+      </include>
+
+    </model>
+
+    <model name="board6">
+      <pose>0 0.5 2.1 0 0 0</pose>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.142857142857 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_1</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.285714285714 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_2</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.428571428571 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_3</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.571428571429 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_4</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.714285714286 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_5</name>
+      </include>
+
+      <include>
+        <uri>model://AH_thee_mango</uri>
+        <pose>0.857142857143 0 0 0 0 1.57</pose>
+        <name>ah_thee_mango_6</name>
+      </include>
+
+    </model>
+
+  </model>
+</sdf>

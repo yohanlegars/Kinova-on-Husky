@@ -1,0 +1,320 @@
+<?xml version="1.0"?>
+<sdf version='1.6'>
+  <model name='AH_shelf_filled_april'>
+    <static>1</static>
+    <link name='link'>
+      <inertial>
+        <mass>1</mass>
+        <inertia>
+          <ixx>1</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>1</iyy>
+          <iyz>0</iyz>
+          <izz>1</izz>
+        </inertia>
+      </inertial>
+      <pose frame=''>-0 0 0 0 0 0</pose>
+
+      <visual name='visual'>
+        <pose frame=''>0 0 0 0 0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://AH_shelf/AH_shelf.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <transparency>0</transparency>
+        <cast_shadows>1</cast_shadows>
+      </visual>
+
+      <collision name='collision'>
+        <laser_retro>0</laser_retro>
+        <max_contacts>10</max_contacts>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <mesh>
+            <uri>model://AH_shelf/AH_shelf.dae</uri>
+            <scale>1 1 1</scale>
+          </mesh>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>1</mu>
+              <mu2>1</mu2>
+              <fdir1>0 0 0</fdir1>
+              <slip1>0</slip1>
+              <slip2>0</slip2>
+            </ode>
+            <torsional>
+              <coefficient>1</coefficient>
+              <patch_radius>0</patch_radius>
+              <surface_radius>0</surface_radius>
+              <use_patch_radius>1</use_patch_radius>
+              <ode>
+                <slip>0</slip>
+              </ode>
+            </torsional>
+          </friction>
+          <bounce>
+            <restitution_coefficient>0</restitution_coefficient>
+            <threshold>1e+06</threshold>
+          </bounce>
+          <contact>
+            <collide_without_contact>0</collide_without_contact>
+            <collide_without_contact_bitmask>1</collide_without_contact_bitmask>
+            <collide_bitmask>1</collide_bitmask>
+            <ode>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+              <max_vel>0.01</max_vel>
+              <min_depth>0</min_depth>
+            </ode>
+            <bullet>
+              <split_impulse>1</split_impulse>
+              <split_impulse_penetration_threshold>-0.01</split_impulse_penetration_threshold>
+              <soft_cfm>0</soft_cfm>
+              <soft_erp>0.2</soft_erp>
+              <kp>1e+13</kp>
+              <kd>1</kd>
+            </bullet>
+          </contact>
+        </surface>
+      </collision>
+    </link>
+
+  <model name="board0">
+    <pose>0 0.5 2.1 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00030</uri>
+      <pose>0.14285714285714285 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00031</uri>
+      <pose>0.2857142857142857 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00032</uri>
+      <pose>0.42857142857142855 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00033</uri>
+      <pose>0.5714285714285714 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00034</uri>
+      <pose>0.7142857142857142 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00035</uri>
+      <pose>0.8571428571428571 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  <model name="board1">
+    <pose>0 0.5 1.6 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00000</uri>
+      <pose>0.14285714285714285 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00001</uri>
+      <pose>0.2857142857142857 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00002</uri>
+      <pose>0.42857142857142855 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00003</uri>
+      <pose>0.5714285714285714 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00004</uri>
+      <pose>0.7142857142857142 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00005</uri>
+      <pose>0.8571428571428571 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  <model name="board2">
+    <pose>0 0.5 1.2 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00015</uri>
+      <pose>0.1111111111111111 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00016</uri>
+      <pose>0.2222222222222222 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00017</uri>
+      <pose>0.3333333333333333 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00018</uri>
+      <pose>0.4444444444444444 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00019</uri>
+      <pose>0.5555555555555556 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00020</uri>
+      <pose>0.6666666666666666 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00021</uri>
+      <pose>0.7777777777777777 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_puur_tag36_11_00022</uri>
+      <pose>0.8888888888888888 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  <model name="board3">
+    <pose>0 0.5 0.9 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00030</uri>
+      <pose>0.14285714285714285 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00031</uri>
+      <pose>0.2857142857142857 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00032</uri>
+      <pose>0.42857142857142855 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00033</uri>
+      <pose>0.5714285714285714 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00034</uri>
+      <pose>0.7142857142857142 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_mango_tag36_11_00035</uri>
+      <pose>0.8571428571428571 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  <model name="board4">
+    <pose>0 0.5 0.65 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00000</uri>
+      <pose>0.1111111111111111 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00001</uri>
+      <pose>0.2222222222222222 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00002</uri>
+      <pose>0.3333333333333333 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00003</uri>
+      <pose>0.4444444444444444 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00004</uri>
+      <pose>0.5555555555555556 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00005</uri>
+      <pose>0.6666666666666666 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00006</uri>
+      <pose>0.7777777777777777 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_hagelslag_melk_tag36_11_00007</uri>
+      <pose>0.8888888888888888 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  <model name="board5">
+    <pose>0 0.5 0.25 0 0 0</pose>
+    
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00045</uri>
+      <pose>0.14285714285714285 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00046</uri>
+      <pose>0.2857142857142857 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00047</uri>
+      <pose>0.42857142857142855 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00048</uri>
+      <pose>0.5714285714285714 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00049</uri>
+      <pose>0.7142857142857142 0 0 0 0 1.57</pose>
+    </include>
+            
+    <include>
+      <uri>model://AH_thee_bosvruchten_tag36_11_00050</uri>
+      <pose>0.8571428571428571 0 0 0 0 1.57</pose>
+    </include>
+            
+  </model>
+    
+  </model>
+</sdf>

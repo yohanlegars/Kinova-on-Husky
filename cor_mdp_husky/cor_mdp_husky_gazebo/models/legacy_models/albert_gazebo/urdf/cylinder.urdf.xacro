@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="cylinder_radius" default="100"/>
+  <xacro:arg name="cylinder_height" default="100"/>
+  <xacro:arg name="rpy" default="0 0 0"/>
+  <xacro:arg name="color" default="Gray"/>
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/cylinder.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_cylinder cylinder_name="cylinder_0" r="$(arg cylinder_radius)" l="$(arg cylinder_height)" xyz="0 0 0" rpy="$(arg rpy)" color="$(arg color)"/>
+
+  <gazebo> <static>true</static></gazebo>
+</robot>
+

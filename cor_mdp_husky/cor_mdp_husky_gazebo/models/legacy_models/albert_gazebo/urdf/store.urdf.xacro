@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/cabinate.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_cabinate cabinate_name="cabinate_1" xyz="0 0 0"/>
+  <gazebo> <static>true</static></gazebo>
+
+</robot>

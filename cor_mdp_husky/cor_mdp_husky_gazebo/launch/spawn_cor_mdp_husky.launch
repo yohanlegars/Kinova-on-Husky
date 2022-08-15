@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Robot Customization -->
+    <arg name="husky_control_mode" default="diff_drive"/>
+    <arg name="kinova_control_mode" default="moveit" doc="Options: effort or moveit"/>
+    <arg name="robot_name" default="cor_mdp_husky"/>
+    <arg name="urdf_extras" default="$(find cor_mdp_husky_description)/urdf/duot06_description.urdf.xacro"/>
+    <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
+
+    <!-- Initial position in Gazebo -->
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.132"/>
+    <arg name="yaw" default="0.0"/>
+
+    <!-- Lidar Configuration -->
+    <arg name="lidar_model" default="HDL-32E" doc="VLP-16 or HDL-32E"/>
+    <arg name="hz" default="10" doc="Update rate of Velodyne LiDAR"/>
+    <arg name="gpu" default="false" doc="Use the gpu option to accelerate the gazebo or not? (only > gazebo 9.4.0 supports this feature)"/>
+    <arg name="samples" default="2187" doc="Number of horizontal rotating samples (Default settings in urdf are VLP-16: 1875, HDL-32E: 2187)"/>
+
+    <!-- TODO: possibly read initial joint positions from here (although the yaml doesn't exist for gen3_lite, but we might be able to use gen3's): -->
+    <!-- $(find kortex_description)/arms/$(arg arm)/$(arg dof)dof/config/gazebo_initial_joint_positions.yaml -->
+    <arg name="initial_joint_positions"
+         doc="Initial joint configuration of the kortex. Specify as a list of name/value pairs in form of '-J [name-of-joint] [value-in-rad]'"
+         default="-J kinova_arm_joint_1 1.57
+                  -J kinova_arm_joint_2 -0.35
+                  -J kinova_arm_joint_3 -2.00
+                  -J kinova_arm_joint_4 0
+                  -J kinova_arm_joint_5 -1.00
+                  -J kinova_arm_joint_6 1.57"/>
+
+    <!-- TODO: possibly move to dedicated load_description launch file in cor_mdp_husky_description -->
+    <param name="robot_description"
+           command="$(find xacro)/xacro --inorder
+                    $(find husky_description)/urdf/husky.urdf.xacro
+                    urdf_extras:=$(arg urdf_extras)
+                    lidar_model:=$(arg lidar_model)
+                    hz:=$(arg hz)
+                    gpu:=$(arg gpu)
+                    samples:=$(arg samples)"
+                    />
+
+    <node name="urdf_spawner" 
+          pkg="gazebo_ros" 
+          type="spawn_model"
+          output="screen"
+          args="-x $(arg x)
+                -y $(arg y)
+                -z $(arg z)
+                -Y $(arg yaw)
+                $(arg initial_joint_positions)
+                -urdf 
+                -unpause
+                -param robot_description 
+                -model $(arg robot_name)"/>
+
+    <!-- Spawn required ROS controllers -->
+    <include file="$(find cor_mdp_husky_control)/launch/sim_control.launch">
+        <arg name="husky_control_mode" value="$(arg husky_control_mode)"/>
+        <arg name="kinova_control_mode" value="$(arg kinova_control_mode)"/>
+        <arg name="enable_ekf" value="$(arg enable_ekf)"/>
+    </include>
+
+</launch>

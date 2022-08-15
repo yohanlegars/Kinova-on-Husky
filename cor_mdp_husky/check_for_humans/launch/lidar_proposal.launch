@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="check_for_humans" type="lidar_proposals.py" name="analyze_point_cloud" output="screen"
+    launch-prefix="gnome-terminal --command">
+    </node>
+</launch>

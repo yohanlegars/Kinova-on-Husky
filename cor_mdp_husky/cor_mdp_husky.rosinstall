@@ -1,0 +1,5 @@
+- git: {local-name: husky,              uri: 'https://github.com/yj-Tang/husky.git', version: 'melodic-devel'}
+- git: {local-name: ros_kortex,         uri: 'https://github.com/yj-Tang/ros_kortex.git', version: 'melodic-devel'}
+- git: {local-name: husky_manipulation, uri: 'https://github.com/yj-Tang/husky_manipulation.git', version: 'melodic-devel'}
+- git: {local-name: sensor_mounts,      uri: 'https://github.com/clearpathrobotics/sensor_mounts.git', version: 'main'}
+- git: {local-name: universal_robot,    uri: 'https://github.com/ros-industrial/universal_robot.git', version: 'melodic-devel'}

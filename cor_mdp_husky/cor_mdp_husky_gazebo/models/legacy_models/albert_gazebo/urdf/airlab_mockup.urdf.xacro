@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find albert_gazebo)/world/urdf/cell.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_cell cell_name="cell_1" xyz="0 -8 0"/>
+  <xacro:spawn_cell cell_name="cell_2" xyz="0 0 0"/>
+  <gazebo> <static>true</static></gazebo>
+</robot>

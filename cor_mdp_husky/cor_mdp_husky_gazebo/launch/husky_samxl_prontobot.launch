@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Gazebo & GUI Configuration -->
+    <arg name="gui"          default="true"  doc="Should the gazebo GUI be launched?" />
+    <arg name="paused"       default="false" doc="Should the simulation directly be stopped at 0s?" />
+    <arg name="world"        default="samxl" doc="World name for gazebo to use (without .world extension), e.g. empty or samxl or lely" />
+    <arg name="use_sim_time" default="true"/>
+    <arg name="debug"        default="false"/>
+
+    <!-- Robot Customization -->
+    <arg name="rviz" default="true"/>
+    <arg name="husky_control_mode" default="diff_drive"/>
+    <arg name="kinova_control_mode" default="moveit" doc="Options: effort or moveit"/>
+    <arg name="robot_name" default="cor_mdp_husky"/>
+    <arg name="urdf_extras" default="$(find cor_mdp_husky_description)/urdf/duot06_description.urdf.xacro"/>
+    <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
+
+    <!-- Initial position in Gazebo -->
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="6.5"/>
+    <arg name="z" default="0.132"/>
+    <arg name="yaw" default="0.0"/>
+
+    <!-- Lidar Configuration -->
+    <arg name="lidar_model" default="VLP-16" doc="VLP-16 or HDL-32E"/>
+    <arg name="hz" default="5" doc="Update rate of Velodyne LiDAR"/>
+    <arg name="gpu" default="false" doc="Use the gpu option to accelerate the gazebo or not? (only > gazebo 9.4.0 supports this feature)"/>
+    <arg name="samples" default="500" doc="Number of horizontal rotating samples (Default settings in urdf are VLP-16: 1875, HDL-32E: 2187)"/>
+
+    <!-- navigation stack setup -->
+    <arg name="localization"   default="gmapping" doc="Options: gmapping or amcl"/>
+    <!-- <arg name="map_file" default="$(find husky_navigation)/maps/playpen_map.yaml"/> -->
+    <arg name="map_file" default="$(find cor_mdp_husky_gazebo)/maps/samxl_testmap.yaml"/>
+    <arg name="scan_topic" default="$(eval optenv('HUSKY_LASER_TOPIC', 'scan'))" />
+    <arg name="exploration" default="false"/>
+
+    <!--Convert 3D point cloud into a 2D laser scan for 2D-based algorithms (e.g. gmapping or amcl)-->
+    <node name="pointcloud_to_laserscan" pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" output="screen" respawn="false">
+        <remap from="cloud_in" to="velodyne_points"/>
+        <!-- distance between velodyne link to base_footprint is 0.921 -->
+        <!-- should be slightly shorter than this, otherwise the lidar ring of the ground plane will also be converted  -->
+        <param name="min_height" value="-0.7"/>
+        <param name="max_height" value="5"/>
+        <param name="range_min" value="1.2"/>
+        <param name="range_max" value="130"/>
+    </node>
+
+    <!-- Start up gazebo and bring up cor_mdp_husky -->
+    <include file="$(find cor_mdp_husky_gazebo)/launch/cor_mdp_husky_gazebo.launch" pass_all_args="True"/>
+
+    <!-- cor_mdp_husky localization, mapping and navigation -->
+    <group if="$(eval localization == 'gmapping')">
+      <include file="$(find husky_navigation)/launch/gmapping_demo.launch">
+          <arg name="scan_topic" value="$(arg scan_topic)"/>
+      </include>
+    </group>
+
+    <group if="$(eval localization == 'amcl')">
+      <include file="$(find husky_navigation)/launch/amcl_demo.launch">
+          <arg name="map_file" value="$(arg map_file)"/>
+      </include>
+    </group>
+
+    <!-- frontier exploration -->
+    <node pkg="explore_lite" type="explore" respawn="true" name="explore" output="screen" if="$(arg exploration)">
+      <rosparam file="$(find cor_mdp_husky_gazebo)/config/exploration.yaml" command="load" />
+    </node>
+
+   <!--qtros -->
+    <include file="$(find qtros)/launch/gui.launch">
+    </include>
+
+   <!-- point mgmt-->
+   <include file="$(find point_mgmt)/launch/point_mgmt.launch">
+   </include>
+   
+   <!-- lidar_proposal node in check_for_humans -->
+   <include file="$(find check_for_humans)/launch/lidar_proposal.launch">
+   </include>
+   
+   <!-- camera_detector -->
+   <include file="$(find camera_detector)/launch/camera_detector.launch">
+   </include>   
+
+   <!-- kinova planning node -->
+   <include file="$(find cor_mdp_husky_kinova_planning)/launch/kinova_planning.launch">
+   </include>
+    
+
+    <node pkg="rviz" type="rviz" output="screen" name="rviz" args="-d $(find cor_mdp_husky_description)/rviz/cor_mdp_husky_navigation.rviz" if="$(arg rviz)"/>
+
+    <!-- ur5 stuff -->
+    <include file="$(find cor_mdp_husky_gazebo)/launch/spawn_ur5.launch" />
+    <node pkg="cor_mdp_husky_gazebo" type="ur5_waypoints.py" name="ur5_waypoints" />
+
+</launch>

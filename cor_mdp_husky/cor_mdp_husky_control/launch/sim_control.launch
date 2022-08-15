@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Robot configuration -->
+    <arg name="robot_name" default="cor_mdp_husky"/>
+    <arg name="robot_namespace" default="cor_mdp_husky1"/>
+    <arg name="urdf_extras" default="$(find cor_mdp_husky_description)/urdf/duot06_description.urdf.xacro"/>
+    <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
+
+    <arg name="kinova_control_mode" default="effort"/>
+    <arg name="husky_control_mode" default="diff_drive"/>
+    <!-- <arg name="husky_pid_controller" default="true" doc="Should the gazebo initialize the pid controller for the husky? Use false if you don't know how to tune the gains and want to apply the command directly"/> -->
+
+    <rosparam command="load" file="$(find cor_mdp_husky_control)/config/cor_mdp_husky_controllers.yaml"/>
+    <rosparam command="load" file="$(find cor_mdp_husky_control)/config/sim_controllers.yaml"/>
+    <rosparam command="load" file="$(find husky_control)/config/control.yaml" />
+
+    <!-- Joint state controller -->
+    <node name="joint_state_controller_spawner"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          args="joint_state_controller" />
+
+    <!-- Joint state publisher -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" respawn="false">
+      <param name="use_tf_static" value="true"/>
+    </node>
+
+    <!-- Load controller configuration file from kortex_control package -->
+    <arg name="prefix" default="kinova_arm_"/>
+    <rosparam file="$(find kortex_control)/arms/gen3_lite/6dof/config/joint_position_controllers.yaml" command="load" subst_value="true"/>
+    <rosparam file="$(find kortex_control)/grippers/gen3_lite_2f/config/gripper_action_controller_parameters.yaml" command="load" subst_value="true"/>
+
+    <!-- cor_mdp_husky controller_spawner -->
+    <node name="cor_mdp_husky_controller_spawner"
+          pkg="controller_manager"
+          type="spawner"
+          respawn="false"
+          output="screen"
+          args="husky_velocity_controller kinova_gripper_controller"
+    />
+
+    <!-- Moveit control -->
+    <group if="$(eval kinova_control_mode == 'moveit')">
+      <!-- setting(s) for the move_group.launch -->
+      <arg name="pipeline" default="ompl" doc="Options: ompl or chomp or stomp" />
+
+      <node name="controller_spawner_arm" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="kinova_joint_trajectory_controller" />
+      <include file="$(find cor_mdp_husky_moveit_config)/launch/move_group.launch">
+        <arg name="load_robot_description" value="false"/>
+        <arg name="pipeline" value="$(arg pipeline)"/>
+      </include>
+    </group>
+
+    <group unless="$(eval kinova_control_mode == 'moveit')">
+      <node name="kinova_controller_spawner" 
+            pkg="controller_manager" 
+            type="spawner" 
+            respawn="false" 
+            output="screen" 
+            args="kinova_joint_$(arg kinova_control_mode)_controller"
+      />
+    </group>
+
+    <!-- EKF -->
+    <group if="$(arg enable_ekf)" >
+        <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization">
+            <rosparam command="load" file="$(find husky_control)/config/localization.yaml" />
+        </node>
+    </group>
+
+    <!-- Base control stuff -->
+    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
+        <rosparam command="load" file="$(find husky_control)/config/twist_mux.yaml" />
+        <remap from="cmd_vel_out" to="husky_velocity_controller/cmd_vel"/>
+    </node>
+
+</launch>

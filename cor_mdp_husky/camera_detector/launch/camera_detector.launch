@@ -1,0 +1,11 @@
+<launch>
+
+	<node 
+		pkg="camera_detector"
+		type="camera_detector_node"
+		name="cam_detector"
+		ns="visual_human_detection"
+		launch-prefix="gnome-terminal --command"
+	></node>
+
+</launch>

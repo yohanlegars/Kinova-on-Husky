@@ -1,0 +1,65 @@
+# NOTE: Using feed forward JointGroup{modality}Controllers as much as possible
+
+kinova_joint_effort_controller:
+  type: effort_controllers/JointGroupEffortController
+  joints:
+    - kinova_arm_joint_1
+    - kinova_arm_joint_2
+    - kinova_arm_joint_3
+    - kinova_arm_joint_4
+    - kinova_arm_joint_5
+    - kinova_arm_joint_6
+
+kinova_joint_velocity_controller:
+  type: velocity_controllers/JointGroupVelocityController
+  joints:
+    - kinova_arm_joint1
+    - kinova_arm_joint2
+    - kinova_arm_joint3
+    - kinova_arm_joint4
+    - kinova_arm_joint5
+    - kinova_arm_joint6
+
+kinova_joint_position_controller:
+  type: position_controllers/JointGroupPositionController
+  joints:
+    - kinova_arm_joint1
+    - kinova_arm_joint2
+    - kinova_arm_joint3
+    - kinova_arm_joint4
+    - kinova_arm_joint5
+    - kinova_arm_joint6
+
+kinova_gripper_controller:
+  type: "position_controllers/GripperActionController"
+  joint: kinova_arm_right_finger_bottom_joint
+  action_monitor_rate: 100
+
+kinova_joint_trajectory_controller:
+  type: effort_controllers/JointTrajectoryController
+  joints:
+    - kinova_arm_joint_1
+    - kinova_arm_joint_2
+    - kinova_arm_joint_3
+    - kinova_arm_joint_4
+    - kinova_arm_joint_5
+    - kinova_arm_joint_6
+  constraints:
+    goal_time: 1.0
+    stopped_velocity_tolerance: 0.5
+  stop_trajectory_duration: 1.0
+  state_publish_rate: 25
+  action_monitor_rate: 25
+  gains:
+    kinova_arm_joint_1:
+      { p: 3000.0, i: 0.0, d: 2.0, i_clamp_min: -100.0, i_clamp_max: 100.0 }
+    kinova_arm_joint_2:
+      { p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -5.0, i_clamp_max: 5.0 }
+    kinova_arm_joint_3:
+      { p: 50000.0, i: 0.0, d: 0.0, i_clamp_min: -1.0, i_clamp_max: 1.0 }
+    kinova_arm_joint_4:
+      { p: 750.0, i: 0.0, d: 0.2, i_clamp_min: -1.0, i_clamp_max: 1.0 }
+    kinova_arm_joint_5:
+      { p: 5000.0, i: 0.0, d: 1.0, i_clamp_min: -1.0, i_clamp_max: 1.0 }
+    kinova_arm_joint_6:
+      { p: 100.0, i: 0.0, d: 0.0, i_clamp_min: -0.1, i_clamp_max: 0.1 }

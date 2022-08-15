@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:arg name="sphere_size" default="100"/>
+  <xacro:arg name="color" default="Gray"/>
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/sphere.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_0" r="$(arg sphere_size)" xyz="0 0 0" color="$(arg color)"/>
+
+  <gazebo> <static>true</static></gazebo>
+</robot>
+

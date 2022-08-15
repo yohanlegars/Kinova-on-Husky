@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="spawn_cabinate" params="cabinate_name:='cabinate_0' xyz:='0 0 0' rpy:='0 0 0'">
+  <link name="${cabinate_name}">
+    <inertial>
+      <origin xyz="1 -0.5 0" rpy="0 0 0"/>
+      <mass value="1"/>
+      <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
+    </inertial>
+    <visual>
+      <origin xyz="1 -0.5 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="$(find mobile_manipulator)/world/meshes/shelves.dae"/>
+      </geometry>
+      <material name="Gray" />
+    </visual>
+    <collision>
+      <origin xyz="1 -0.5 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="$(find mobile_manipulator)/world/meshes/shelves.dae"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="world_${cabinate_name}_joint" type="fixed">
+    <origin xyz="${xyz}" rpy="${rpy}"/>
+    <parent link="world"/>
+    <child link="${cabinate_name}"/>
+  </joint>
+</xacro:macro>
+</robot>

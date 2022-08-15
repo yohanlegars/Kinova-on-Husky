@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Gazebo & GUI Configuration -->
+    <arg name="gui"          default="true"  doc="Should the gazebo GUI be launched?" />
+    <arg name="paused"       default="false" doc="Should the simulation directly be stopped at 0s?" />
+    <arg name="world"        default="lely" doc="World name for gazebo to use (without .world extension), e.g. empty or lely or samxl" />
+    <arg name="use_sim_time" default="true"/>
+    <arg name="debug"        default="false"/>
+
+    <!-- Robot Customization -->
+    <arg name="husky_control_mode" default="diff_drive"/>
+    <arg name="kinova_control_mode" default="moveit" doc="Options: effort or moveit"/>
+    <arg name="robot_name" default="cor_mdp_husky"/>
+    <arg name="urdf_extras" default="$(find cor_mdp_husky_description)/urdf/duot06_description.urdf.xacro"/>
+    <arg name="enable_ekf" default="$(optenv ENABLE_EKF true)"/>
+
+    <!-- Initial position in Gazebo -->
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="0.0"/>
+    <arg name="z" default="0.132"/>
+    <arg name="yaw" default="0.0"/>
+
+    <!-- Lidar Configuration -->
+    <arg name="lidar_model" default="HDL-32E" doc="VLP-16 or HDL-32E"/>
+    <arg name="hz" default="10" doc="Update rate of Velodyne LiDAR"/>
+    <arg name="gpu" default="false" doc="Use the gpu option to accelerate the gazebo or not? (only > gazebo 9.4.0 supports this feature)"/>
+    <arg name="samples" default="2187" doc="Number of horizontal rotating samples (Default settings in urdf are VLP-16: 1875, HDL-32E: 2187)"/>
+
+    <!-- Start gazebo world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="world_name" value="worlds/$(arg world).world"/>
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="gui" value="$(arg gui)"/>
+    </include>
+
+    <!-- Spawn cor_mdp_husky in gazebo -->
+    <include file="$(find cor_mdp_husky_gazebo)/launch/spawn_cor_mdp_husky.launch" pass_all_args="True" />
+   
+</launch>

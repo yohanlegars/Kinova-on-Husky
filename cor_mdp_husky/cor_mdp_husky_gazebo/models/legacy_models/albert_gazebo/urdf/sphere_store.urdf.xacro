@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/sphere.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_0" r="100" xyz="5 5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_1" r="100" xyz="1 4 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_2" r="100" xyz="-5 1 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_3" r="200" xyz="2.5 -4 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_4" r="100" xyz="0 2 2"/>
+
+  <!--xacro:spawn_sphere sphere_name="sphere_1" r="100" xyz="1 2 2"/>
+  <xacro:spawn_sphere sphere_name="sphere_2" r="100" xyz="-0.5 3.5 2"/>
+  <xacro:spawn_sphere sphere_name="sphere_3" r="100" xyz="-2 5 2"/>
+  <xacro:spawn_sphere sphere_name="sphere_4" r="100" xyz="-3.5 6.5 2"/>
+  <xacro:spawn_sphere sphere_name="sphere_5" r="100" xyz="-5 6.5 2"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_6" r="100" xyz="4 -2 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_7" r="100" xyz="4 -3.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_8" r="100" xyz="4 -5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_9" r="100" xyz="4 -6.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_10" r="100" xyz="5.5 -6.5 1"/!-->
+  <gazebo> <static>true</static></gazebo>
+</robot>
+

@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<robot name="robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find mobile_manipulator)/world/urdf/sphere.xacro"/>
+
+  <link name="world"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_0" r="50" xyz="-4 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_1" r="50" xyz="-4 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_2" r="50" xyz="-4 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_3" r="50" xyz="-4 1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_4" r="50" xyz="-4 1.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_5" r="50" xyz="-4 1.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_6" r="50" xyz="-4 0.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_7" r="50" xyz="-4 0.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_8" r="50" xyz="-4 0.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_9" r="50" xyz="-4 0.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_10" r="50" xyz="-4 0.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_11" r="50" xyz="-4 0.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_12" r="50" xyz="-4 -0.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_13" r="50" xyz="-4 -0.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_14" r="50" xyz="-4 -0.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_15" r="50" xyz="-4 -1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_16" r="50" xyz="-4 -1.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_17" r="50" xyz="-4 -1.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_18" r="50" xyz="-4 -1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_19" r="50" xyz="-4 -1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_20" r="50" xyz="-4 -1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_21" r="50" xyz="-4 -2.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_22" r="50" xyz="-4 -2.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_23" r="50" xyz="-4 -2.0 1"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_24" r="50" xyz="-1.5 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_25" r="50" xyz="-1.5 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_26" r="50" xyz="-1.5 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_27" r="50" xyz="-1.5 1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_28" r="50" xyz="-1.5 1.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_29" r="50" xyz="-1.5 1.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_30" r="50" xyz="-1.5 0.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_31" r="50" xyz="-1.5 0.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_32" r="50" xyz="-1.5 0.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_33" r="50" xyz="-1.5 0.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_34" r="50" xyz="-1.5 0.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_35" r="50" xyz="-1.5 0.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_36" r="50" xyz="-1.5 -0.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_37" r="50" xyz="-1.5 -0.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_38" r="50" xyz="-1.5 -0.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_39" r="50" xyz="-1.5 -1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_40" r="50" xyz="-1.5 -1.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_41" r="50" xyz="-1.5 -1.0 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_42" r="50" xyz="-1.5 -1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_43" r="50" xyz="-1.5 -1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_44" r="50" xyz="-1.5 -1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_45" r="50" xyz="-1.5 -2.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_46" r="50" xyz="-1.5 -2.0 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_47" r="50" xyz="-1.5 -2.0 1"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_48" r="50" xyz="1.0 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_49" r="50" xyz="1.0 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_50" r="50" xyz="1.0 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_51" r="50" xyz="1.5 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_52" r="50" xyz="1.5 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_53" r="50" xyz="1.5 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_54" r="50" xyz="2.0 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_55" r="50" xyz="2.0 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_56" r="50" xyz="2.0 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_57" r="50" xyz="2.5 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_58" r="50" xyz="2.5 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_59" r="50" xyz="2.5 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_60" r="50" xyz="3.0 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_61" r="50" xyz="3.0 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_62" r="50" xyz="3.0 1.5 1"/>
+  <xacro:spawn_sphere sphere_name="sphere_63" r="50" xyz="3.5 1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_64" r="50" xyz="3.5 1.5 0.5"/>
+  <xacro:spawn_sphere sphere_name="sphere_65" r="50" xyz="3.5 1.5 1"/>
+
+  <xacro:spawn_sphere sphere_name="sphere_66" r="50" xyz="1.0 -1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_67" r="50" xyz="1.0 -1.0 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_68" r="50" xyz="1.5 -1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_69" r="50" xyz="1.5 -1.0 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_70" r="50" xyz="2.0 -1.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_71" r="50" xyz="2.0 -1.0 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_72" r="50" xyz="1.0 -1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_73" r="50" xyz="1.0 -1.5 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_74" r="50" xyz="1.5 -1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_75" r="50" xyz="1.5 -1.5 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_76" r="50" xyz="2.0 -1.5 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_77" r="50" xyz="2.0 -1.5 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_78" r="50" xyz="1.0 -2.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_79" r="50" xyz="1.0 -2.0 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_80" r="50" xyz="1.5 -2.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_81" r="50" xyz="1.5 -2.0 0.35"/>
+  <xacro:spawn_sphere sphere_name="sphere_82" r="50" xyz="2.0 -2.0 0"/>
+  <xacro:spawn_sphere sphere_name="sphere_83" r="50" xyz="2.0 -2.0 0.35"/>
+
+  <gazebo> <static>true</static></gazebo>
+</robot>
+
